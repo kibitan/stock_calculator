@@ -11,9 +11,14 @@ RSpec.describe StockCalculator do
       let(:stock_symbol) { 'AAPL' }
 
       context 'with valid `start_date` argument' do
-        let(:start_date) { '2017-11-22' }
+        let(:start_date) { '2017-11-18' }
 
-        it { is_expected.to be_instance_of StockCalculator::Result }
+        it 'return StockCalculator::Result' do
+          is_expected.to be_instance_of StockCalculator::Result
+          expect(subject.stock_symbol).to eq 'AAPL'
+          expect(subject.start_date).to eq Date.new(2017, 11, 18)
+          expect(subject.today).to eq Date.new(2017, 11, 22)
+        end
       end
     end
   end
