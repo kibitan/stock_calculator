@@ -10,5 +10,6 @@ require "stock_calculator"
 # require "pry"
 # Pry.start
 
-require "irb"
-IRB.start(__FILE__)
+require "pry"
+require "tapp"
+Pry.start(__FILE__)
