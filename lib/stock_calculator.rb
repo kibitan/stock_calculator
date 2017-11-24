@@ -9,11 +9,12 @@ module StockCalculator
   module_function :run
 
   class Main
-    attr_reader :stock_symbol, :start_date
+    attr_reader :stock_symbol, :start_date, :end_date
 
     def initialize(stock_symbol:, start_date:)
       @stock_symbol = stock_symbol
-      @start_date = parse_date(start_date)
+      @start_date   = parse_date(start_date)
+      @end_date     = Date.today
     end
 
     def parse_date(date)
@@ -32,7 +33,8 @@ module StockCalculator
     def result
       Result.new(
         stock_symbol: stock_symbol,
-        start_date: start_date
+        start_date: start_date,
+        end_date: end_date
       )
     end
   end

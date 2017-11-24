@@ -21,7 +21,7 @@ RSpec.describe StockCalculator do
           is_expected.to be_instance_of StockCalculator::Result
           expect(subject.stock_symbol).to eq 'AAPL'
           expect(subject.start_date).to eq Date.new(2017, 11, 18)
-          expect(subject.today).to eq Date.new(2017, 11, 22)
+          expect(subject.end_date).to eq Date.new(2017, 11, 22)
         end
       end
 
@@ -32,7 +32,7 @@ RSpec.describe StockCalculator do
           is_expected.to be_instance_of StockCalculator::Result
           expect(subject.stock_symbol).to eq 'AAPL'
           expect(subject.start_date).to eq Date.new(2017, 11, 18)
-          expect(subject.today).to eq Date.new(2017, 11, 22)
+          expect(subject.end_date).to eq Date.new(2017, 11, 22)
         end
       end
 
