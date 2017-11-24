@@ -16,12 +16,12 @@ module StockCalculator
       @start_date = parse_date(start_date)
     end
 
-    def parse_date(input)
-      case input
+    def parse_date(date)
+      case date
       when String
-        Date.parse(input)
+        Date.parse(date)
       when Date
-        input
+        date
       else
         raise InvalidDate
       end

@@ -36,6 +36,14 @@ RSpec.describe StockCalculator do
         end
       end
 
+      context 'with invalid `start_date` argument: nil' do
+        let(:start_date) { nil }
+
+        it 'raise StockCalculator::Error::InvalidDate' do
+          expect{subject}.to raise_error StockCalculator::InvalidDate
+        end
+      end
+
       context 'with invalid `start_date` argument: integer' do
         let(:start_date) { 12345 }
 
