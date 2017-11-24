@@ -1,18 +1,15 @@
-require 'spec_helper'
-require_relative '../stock_calculator'
-
-require 'date'
-require 'timecop'
-
 RSpec.describe StockCalculator do
+  require 'date'
+  require 'timecop'
+
+  it "has a version number" do
+    expect(StockCalculator::VERSION).not_to be nil
+  end
+
   describe ".run" do
     subject { StockCalculator.run(stock_symbol: stock_symbol, start_date: start_date) }
     before { Timecop.freeze(Time.local(2017, 11, 22, 10, 0, 0)) }
     after { Timecop.return }
-
-    after do
-      Timecop.return
-    end
 
     context 'with valid `stock_symbol` argument' do
       let(:stock_symbol) { 'AAPL' }
@@ -43,7 +40,7 @@ RSpec.describe StockCalculator do
         let(:start_date) { 12345 }
 
         it 'raise StockCalculator::Error::InvalidDate' do
-          expect{subject}.to raise_error StockCalculator::Error::InvalidDate
+          expect{subject}.to raise_error StockCalculator::InvalidDate
         end
       end
 
@@ -51,7 +48,7 @@ RSpec.describe StockCalculator do
         let(:start_date) { 'aaa' }
 
         it 'raise StockCalculator::Error::InvalidDate' do
-          expect{subject}.to raise_error StockCalculator::Error::InvalidDate
+          expect{subject}.to raise_error StockCalculator::InvalidDate
         end
       end
 
@@ -59,7 +56,7 @@ RSpec.describe StockCalculator do
         let(:start_date) { '2017-11-31' }
 
         it 'raise StockCalculator::Error::InvalidDate' do
-          expect{subject}.to raise_error StockCalculator::Error::InvalidDate
+          expect{subject}.to raise_error StockCalculator::InvalidDate
         end
       end
     end
