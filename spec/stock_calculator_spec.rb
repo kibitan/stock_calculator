@@ -2,10 +2,17 @@ require 'spec_helper'
 require_relative '../stock_calculator'
 
 require 'date'
+require 'timecop'
 
 RSpec.describe StockCalculator do
   describe ".run" do
     subject { StockCalculator.run(stock_symbol: stock_symbol, start_date: start_date) }
+    before { Timecop.freeze(Time.local(2017, 11, 22, 10, 0, 0)) }
+    after { Timecop.return }
+
+    after do
+      Timecop.return
+    end
 
     context 'with valid `stock_symbol` argument' do
       let(:stock_symbol) { 'AAPL' }
