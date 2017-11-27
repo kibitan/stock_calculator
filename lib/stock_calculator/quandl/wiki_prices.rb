@@ -23,10 +23,8 @@ module StockCalculator
         Response.new
       end
 
-      private
-
       def request_url
-        API_URL.dup.tap do |url|
+        @request_url ||= API_URL.dup.tap do |url|
           url.query = URI.encode_www_form(
             {
               api_key: Config.api_key,

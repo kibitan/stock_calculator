@@ -9,7 +9,7 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
       StockCalculator::Quandl::WikiPrices.new(
         stock_symbol: stock_symbol,
         date: date
-      ).send(:request_url)
+      ).request_url
     end
 
     context 'with valid arguments' do
