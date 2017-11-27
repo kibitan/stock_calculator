@@ -36,7 +36,14 @@ RSpec.describe StockCalculator do
         end
       end
 
-      # TODO: write test for date range, should be less than today
+      pending 'with invalid `start_date` argument: nil' do
+        let(:start_date) { nil }
+
+        it 'raise StockCalculator::Error::OutOfDate' do
+          expect{subject}.to raise_error StockCalculator::OutOfDate
+        end
+      end
+
       context 'with invalid `start_date` argument: nil' do
         let(:start_date) { nil }
 
