@@ -20,7 +20,7 @@ module StockCalculator
       end
 
       def response
-        Response.new
+        Response.new(request_url: request_url)
       end
 
       def request_url
