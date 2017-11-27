@@ -14,7 +14,7 @@ module StockCalculator
 
       def call_api!
         # NOTE: https://docs.quandl.com/docs/error-codes
-        raise InvalidAPIKey if status_code == '400' && content['quandl_error']['code'] == "QEAx01"
+        raise InvalidAPIKey if status_code == '400' && content[:quandl_error][:code] == "QEAx01"
       end
 
       private
@@ -24,7 +24,7 @@ module StockCalculator
       end
 
       def content
-        @content ||= JSON(net_http_response.body)
+        @content ||= JSON(net_http_response.body, symbolize_names: true)
       end
 
       def status_code
