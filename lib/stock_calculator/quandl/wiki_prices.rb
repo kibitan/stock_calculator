@@ -1,9 +1,12 @@
+require 'stock_calculator/quandl/config'
 require 'stock_calculator/quandl/errors'
 require 'stock_calculator/quandl/response'
 
 module StockCalculator
   module Quandl
     class WikiPrices
+      API_URL = URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES').freeze
+      attr_reader :stock_symbol, :date
 
       class << self
         def find(stock_symbol:, date:)
@@ -12,7 +15,8 @@ module StockCalculator
       end
 
       def initialize(stock_symbol:, date:)
-        api_key
+        @stock_symbol = stock_symbol
+        @date = date
       end
 
       def response
@@ -21,10 +25,15 @@ module StockCalculator
 
       private
 
-      def api_key
-        @api_key ||= ENV['QUANDL_API_KEY'].tap do |api_key|
-          raise NoAPIKey if api_key.nil?
-          raise NoAPIKey if api_key.empty?
+      def request_url
+        API_URL.dup.tap do |url|
+          url.query = URI.encode_www_form(
+            {
+              api_key: Config.api_key,
+              ticker: stock_symbol,
+              date: date
+            }
+          )
         end
       end
     end
