@@ -33,9 +33,8 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
     end
 
     before do
-      allow(ENV).to receive(:[]).and_call_original
-      allow(ENV).to receive(:[]).with("QUANDL_API_KEY")
-                                .and_return(quandl_api_key)
+      allow(StockCalculator::Quandl::Config).to receive(:api_key)
+                                                .and_return(quandl_api_key)
     end
 
     context 'with valid `stock_symbol` argument' do
@@ -44,19 +43,11 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
       context 'with valid `date` argument' do
         let(:date) { Date.today }
 
-        context "when api_key is not found" do
-          let(:quandl_api_key) { nil }
+        context 'when api_key is invalid' do
+          let(:quandl_api_key) { 'hoge' }
 
           it 'raise error' do
-            expect{subject}.to raise_error StockCalculator::Quandl::NoAPIKey
-          end
-        end
-
-        context 'when api_key is empty string' do
-          let(:quandl_api_key) { '' }
-
-          it 'raise error' do
-            expect{subject}.to raise_error StockCalculator::Quandl::NoAPIKey
+            expect{subject}.to raise_error StockCalculator::Quandl::InvalidAPIKey
           end
         end
 
