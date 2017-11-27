@@ -1,6 +1,7 @@
 require "stock_calculator/version"
 require "stock_calculator/errors"
 require "stock_calculator/result"
+require "stock_calculator/quandl/wiki_prices"
 
 module StockCalculator
   def run(stock_symbol:, start_date:)
