@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "stock_calculator"
+require "faker"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
