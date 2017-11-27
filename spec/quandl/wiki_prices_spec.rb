@@ -5,21 +5,36 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
                                                 .and_return(quandl_api_key)
     end
 
-    subject do
-      StockCalculator::Quandl::WikiPrices.new(
-        stock_symbol: stock_symbol,
-        date: date
-      ).request_url
-    end
-
-    context 'with valid arguments' do
+    context 'with api_key' do
       let(:quandl_api_key) { 'hoge' }
-      let(:stock_symbol) { 'AAPL' }
-      let(:date) { Date.new(2017, 11, 23) }
 
-      it 'return valid url' do
-        is_expected.to eq \
-          URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=hoge&ticker=AAPL&date=2017-11-23')
+      context 'with stock_symbol' do
+        let(:stock_symbol) { 'AAPL' }
+        subject do
+          StockCalculator::Quandl::WikiPrices.new(
+            stock_symbol: stock_symbol
+          ).request_url
+        end
+
+        it 'return valid URL' do
+          is_expected.to eq \
+            URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=hoge&ticker=AAPL')
+        end
+
+        context "with date" do
+          let(:date) { Date.new(2017, 11, 23) }
+          subject do
+            StockCalculator::Quandl::WikiPrices.new(
+              stock_symbol: stock_symbol,
+              date: date
+            ).request_url
+          end
+
+          it 'return valid URL' do
+            is_expected.to eq \
+              URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=hoge&ticker=AAPL&date=2017-11-23')
+          end
+        end
       end
     end
   end

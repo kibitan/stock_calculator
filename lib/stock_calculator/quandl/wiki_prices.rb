@@ -14,7 +14,7 @@ module StockCalculator
         end
       end
 
-      def initialize(stock_symbol:, date:)
+      def initialize(stock_symbol:, date: nil)
         @stock_symbol = stock_symbol
         @date = date
       end
@@ -30,7 +30,7 @@ module StockCalculator
               api_key: Config.api_key,
               ticker: stock_symbol,
               date: date
-            }
+            }.compact
           )
         end
       end
