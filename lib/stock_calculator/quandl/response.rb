@@ -1,4 +1,5 @@
 require 'stock_calculator/quandl/errors'
+require 'stock_calculator/quandl/data'
 require 'json'
 
 module StockCalculator
