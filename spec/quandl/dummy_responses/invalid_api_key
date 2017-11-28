@@ -1,0 +1,17 @@
+HTTP 400 
+date: Tue, 28 Nov 2017 18:13:43 GMT
+content-type: application/json; charset=utf-8
+content-length: 124
+set-cookie: __cfduid=d44226f052eef598037799ec9a484ae151511892823; expires=Wed, 28-Nov-18 18:13:43 GMT; path=/; domain=.quandl.com; HttpOnly
+cache-control: no-cache
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-ratelimit-limit: 50
+x-ratelimit-remaining: 35
+x-request-id: 54e82038-2bc5-46d7-9cd8-cfb880a731ed
+x-runtime: 0.015066
+x-xss-protection: 1; mode=block
+server: cloudflare-nginx
+cf-ray: 3c4f4d80db572d9b-TXL
+
+{"quandl_error":{"code":"QEAx01","message":"We could not recognize your API key. Please check your API key and try again."}}

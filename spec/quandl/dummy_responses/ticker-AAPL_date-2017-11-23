@@ -1,0 +1,18 @@
+HTTP 200 
+date: Tue, 28 Nov 2017 18:13:22 GMT
+content-type: application/json; charset=utf-8
+content-length: 664
+set-cookie: __cfduid=debb1c0d1d0598533ce23e7ac9e0460911511892802; expires=Wed, 28-Nov-18 18:13:22 GMT; path=/; domain=.quandl.com; HttpOnly
+cache-control: max-age=0, private, must-revalidate
+etag: W/"0fa9e1e878c04566ea335b071c1d4ef5"
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-ratelimit-limit: 50000
+x-ratelimit-remaining: 49993
+x-request-id: 0a028bf0-2ef0-44d0-a389-0e01a044d31c
+x-runtime: 0.035176
+x-xss-protection: 1; mode=block
+server: cloudflare-nginx
+cf-ray: 3c4f4cfe3d9d2d4d-TXL
+
+{"datatable":{"data":[],"columns":[{"name":"ticker","type":"String"},{"name":"date","type":"Date"},{"name":"open","type":"BigDecimal(34,12)"},{"name":"high","type":"BigDecimal(34,12)"},{"name":"low","type":"BigDecimal(34,12)"},{"name":"close","type":"BigDecimal(34,12)"},{"name":"volume","type":"BigDecimal(37,15)"},{"name":"ex-dividend","type":"BigDecimal(42,20)"},{"name":"split_ratio","type":"double"},{"name":"adj_open","type":"BigDecimal(50,28)"},{"name":"adj_high","type":"BigDecimal(50,28)"},{"name":"adj_low","type":"BigDecimal(50,28)"},{"name":"adj_close","type":"BigDecimal(50,28)"},{"name":"adj_volume","type":"double"}]},"meta":{"next_cursor_id":null}}
