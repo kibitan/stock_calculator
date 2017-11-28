@@ -2,11 +2,11 @@ RSpec.describe StockCalculator do
   require 'date'
   require 'timecop'
 
-  it "has a version number" do
+  it 'has a version number' do
     expect(StockCalculator::VERSION).not_to be nil
   end
 
-  describe ".run" do
+  describe '.run' do
     subject { StockCalculator.run(stock_symbol: stock_symbol, start_date: start_date) }
     before { Timecop.freeze(Time.local(2017, 11, 22, 10, 0, 0)) }
     after { Timecop.return }
@@ -40,7 +40,7 @@ RSpec.describe StockCalculator do
         let(:start_date) { nil }
 
         it 'raise StockCalculator::Error::OutOfDate' do
-          expect{subject}.to raise_error StockCalculator::OutOfDate
+          expect { subject }.to raise_error StockCalculator::OutOfDate
         end
       end
 
@@ -48,15 +48,15 @@ RSpec.describe StockCalculator do
         let(:start_date) { nil }
 
         it 'raise StockCalculator::Error::InvalidDate' do
-          expect{subject}.to raise_error StockCalculator::InvalidDate
+          expect { subject }.to raise_error StockCalculator::InvalidDate
         end
       end
 
       context 'with invalid `start_date` argument: integer' do
-        let(:start_date) { 12345 }
+        let(:start_date) { 12_345 }
 
         it 'raise StockCalculator::Error::InvalidDate' do
-          expect{subject}.to raise_error StockCalculator::InvalidDate
+          expect { subject }.to raise_error StockCalculator::InvalidDate
         end
       end
 
@@ -64,7 +64,7 @@ RSpec.describe StockCalculator do
         let(:start_date) { 'aaa' }
 
         it 'raise StockCalculator::Error::InvalidDate' do
-          expect{subject}.to raise_error StockCalculator::InvalidDate
+          expect { subject }.to raise_error StockCalculator::InvalidDate
         end
       end
 
@@ -72,7 +72,7 @@ RSpec.describe StockCalculator do
         let(:start_date) { '2017-11-31' }
 
         it 'raise StockCalculator::Error::InvalidDate' do
-          expect{subject}.to raise_error StockCalculator::InvalidDate
+          expect { subject }.to raise_error StockCalculator::InvalidDate
         end
       end
     end

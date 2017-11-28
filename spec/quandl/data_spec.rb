@@ -1,7 +1,7 @@
 require 'bigdecimal'
 
 RSpec.describe StockCalculator::Quandl::Data do
-  describe ".new" do
+  describe '.new' do
     subject do
       StockCalculator::Quandl::Data.new(
         ticker: ticker,
@@ -21,9 +21,9 @@ RSpec.describe StockCalculator::Quandl::Data do
       )
     end
 
-    context "with raw attributes" do
-      let(:ticker) { "AAPL" }
-      let(:date) { "2017-11-22" }
+    context 'with raw attributes' do
+      let(:ticker) { 'AAPL' }
+      let(:date) { '2017-11-22' }
       let(:open) { 173.36 }
       let(:high) { 175 }
       let(:low) { 173.05 }
@@ -35,10 +35,10 @@ RSpec.describe StockCalculator::Quandl::Data do
       let(:adj_high) { 175 }
       let(:adj_low) { 173.05 }
       let(:adj_close) { 174.96 }
-      let(:adj_volume) { 24997274 }
+      let(:adj_volume) { 24_997_274 }
 
       it 'has valid attributes' do
-        expect(subject.ticker).to        eq "AAPL"
+        expect(subject.ticker).to        eq 'AAPL'
         expect(subject.date).to          eq Date.new(2017, 11, 22)
         expect(subject.open).to          eq BigDecimal('173.36')
         expect(subject.high).to          eq BigDecimal('175')

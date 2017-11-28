@@ -1,42 +1,42 @@
 
-lib = File.expand_path("../lib", __FILE__)
+lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "stock_calculator/version"
+require 'stock_calculator/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "stock_calculator"
+  spec.name          = 'stock_calculator'
   spec.version       = StockCalculator::VERSION
-  spec.authors       = ["kibitan"]
-  spec.email         = ["uzukifirst@gmail.com"]
+  spec.authors       = ['kibitan']
+  spec.email         = ['uzukifirst@gmail.com']
 
-  spec.summary       = "culculate the return and maximum drawdow of stock through the command line"
+  spec.summary       = 'culculate the return and maximum drawdow of stock through the command line'
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "https://github.com/kibitan/stock_calculator"
-  spec.license       = "MIT"
+  spec.homepage      = 'https://github.com/kibitan/stock_calculator'
+  spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
   else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
+    raise 'RubyGems 2.0 or newer is required to protect against ' \
+      'public gem pushes.'
   end
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+  spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  spec.bindir        = "exe"
+  spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = ['lib']
 
-  spec.add_development_dependency "bundler", "~> 1.16"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "timecop"
-  spec.add_development_dependency "webmock"
+  spec.add_development_dependency 'bundler', '~> 1.16'
+  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'timecop'
+  spec.add_development_dependency 'webmock'
 
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "pry-byebug"
-  spec.add_development_dependency "tapp"
+  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'pry-byebug'
+  spec.add_development_dependency 'tapp'
 end
