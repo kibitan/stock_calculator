@@ -96,5 +96,11 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
         expect { subject }.to raise_error StockCalculator::Quandl::NoData
       end
     end
+
+    pending 'APIError' do
+      it 'raise error' do
+        expect { subject }.to raise_error StockCalculator::Quandl::APIError
+      end
+    end
   end
 end
