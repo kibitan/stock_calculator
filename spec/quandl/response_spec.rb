@@ -1,0 +1,55 @@
+require 'net/http'
+
+RSpec.describe StockCalculator::Quandl::Response do
+  describe '.new' do
+    subject { StockCalculator::Quandl::Response.new(net_http_response) }
+    let(:net_http_response) { Net::HTTP.get_response(request_url) }
+
+    before { stub_request(:get, request_url).to_return(dummy_response_file) }
+    after { WebMock.reset! }
+
+    context 'with valid Net::HTTP response' do
+      let(:request_url) { URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=valid_api_key&date=2017-11-22&ticker=AAPL') }
+      let(:dummy_response_file) { File.new('spec/quandl/dummy_responses/ticker-AAPL_date-2017-11-22') }
+
+      it 'has proper attributes' do
+        expect { subject }.not_to raise_error
+        expect(subject.net_http_response).to eq net_http_response
+        expect(subject.content).to eq JSON <<-JSON, symbolize_names: true
+          {"datatable":{"data":[["AAPL","2017-11-22",173.36,175.0,173.05,174.96,24997274.0,0.0,1.0,173.36,175.0,173.05,174.96,24997274.0]],"columns":[{"name":"ticker","type":"String"},{"name":"date","type":"Date"},{"name":"open","type":"BigDecimal(34,12)"},{"name":"high","type":"BigDecimal(34,12)"},{"name":"low","type":"BigDecimal(34,12)"},{"name":"close","type":"BigDecimal(34,12)"},{"name":"volume","type":"BigDecimal(37,15)"},{"name":"ex-dividend","type":"BigDecimal(42,20)"},{"name":"split_ratio","type":"double"},{"name":"adj_open","type":"BigDecimal(50,28)"},{"name":"adj_high","type":"BigDecimal(50,28)"},{"name":"adj_low","type":"BigDecimal(50,28)"},{"name":"adj_close","type":"BigDecimal(50,28)"},{"name":"adj_volume","type":"double"}]},"meta":{"next_cursor_id":null}}
+        JSON
+        expect(subject.status_code).to eq '200'
+        expect(subject.datas).to be_instance_of(Array)
+
+        expect(subject.datas[0]).to be_instance_of(StockCalculator::Quandl::Data)
+        expect(subject.datas[0].ticker).to eq 'AAPL'
+        expect(subject.datas[0].date).to eq Date.new(2017, 11,22)
+        expect(subject.datas[0].open).to eq 173.36
+        expect(subject.datas[0].high).to eq 175.0
+        expect(subject.datas[0].low).to eq 173.05
+        expect(subject.datas[0].close).to eq 174.96
+        expect(subject.datas[0].volume).to eq 24997274.0
+        expect(subject.datas[0].ex_dividend).to eq  0.0
+        expect(subject.datas[0].split_ratio).to eq 1.0
+        expect(subject.datas[0].adj_open).to eq 173.36
+        expect(subject.datas[0].adj_high).to eq 175.0
+        expect(subject.datas[0].adj_low).to eq 173.05
+        expect(subject.datas[0].adj_close).to eq 174.96
+        expect(subject.datas[0].adj_volume).to eq 24997274.0
+      end
+    end
+  end
+
+  describe '#check_errors' do
+    subject do
+      StockCalculator::Quandl::Response.new(
+      Net::HTTP.get_response(request_url))
+    end
+
+    pending 'APIError' do
+      it 'raise error' do
+        expect { subject }.to raise_error StockCalculator::Quandl::APIError
+      end
+    end
+  end
+end
