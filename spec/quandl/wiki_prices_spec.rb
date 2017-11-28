@@ -52,14 +52,20 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
                                                 .and_return(quandl_api_key)
     end
 
+    before { stub_request(:get, stub_url).to_return(dummy_response_file) }
+
+    after { WebMock.reset! }
+
     context 'with valid `stock_symbol` argument' do
       let(:stock_symbol) { 'AAPL' }
 
       context 'with valid `date` argument' do
-        let(:date) { Date.today }
+        let(:date) { Date.new(2017, 11, 23) }
 
         context 'when api_key is invalid' do
-          let(:quandl_api_key) { 'hoge' }
+          let(:quandl_api_key) { 'invalid_api_key' }
+          let(:stub_url) { 'https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=invalid_api_key&date=2017-11-23&ticker=AAPL' }
+          let(:dummy_response_file) { File.new('spec/quandl/dummy_responses/invalid_api_key') }
 
           it 'raise error' do
             expect{subject}.to raise_error StockCalculator::Quandl::InvalidAPIKey
@@ -67,7 +73,9 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
         end
 
         context 'with api_key' do
-          let(:quandl_api_key) { 'abcde' }
+          let(:quandl_api_key) { 'valid_api_key' }
+          let(:stub_url) { 'https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=valid_api_key&date=2017-11-23&ticker=AAPL' }
+          let(:dummy_response_file) {  File.new('spec/quandl/dummy_responses/ticker-AAPL_date-2017-11-23') }
 
           it 'return response' do
             is_expected.to be_instance_of StockCalculator::Quandl::Response
