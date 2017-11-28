@@ -1,6 +1,6 @@
 require 'stock_calculator/quandl/config'
-require 'stock_calculator/quandl/errors'
 require 'stock_calculator/quandl/response'
+require 'net/http'
 
 module StockCalculator
   module Quandl
@@ -20,7 +20,7 @@ module StockCalculator
       end
 
       def response
-        Response.new(request_url: request_url)
+        Response.new(Net::HTTP.get_response(request_url))
       end
 
       def request_url
