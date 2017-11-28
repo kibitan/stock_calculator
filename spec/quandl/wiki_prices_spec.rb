@@ -84,12 +84,16 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
       end
     end
 
-    pending 'with invalid `stock_symbol` argument' do
-      let(:stock_symbol) { 'hoge' }
-      let(:date) { Date.today }
+    context 'with invalid `stock_symbol` argument and other valid arguments' do
+      let(:stock_symbol) { 'invalid_stock_symbol' }
+      let(:date) { Date.new(2017, 11, 23) }
+      let(:quandl_api_key) { 'valid_api_key' }
+
+      let(:stub_url) { 'https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=valid_api_key&date=2017-11-23&ticker=invalid_stock_symbol' }
+      let(:dummy_response_file) {  File.new('spec/quandl/dummy_responses/no_data') }
 
       it 'raise error' do
-        expect{subject}.to raise_error StockCalculator::Quandl::InvlaidStockSymbol
+        expect { subject }.to raise_error StockCalculator::Quandl::NoData
       end
     end
   end

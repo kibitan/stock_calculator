@@ -14,6 +14,8 @@ module StockCalculator
 
         # NOTE: https://docs.quandl.com/docs/error-codes
         raise InvalidAPIKey if status_code == '400' && content[:quandl_error][:code] == "QEAx01"
+
+        raise NoData if status_code == '200' && content[:datatable][:data].empty?
       end
     end
   end
