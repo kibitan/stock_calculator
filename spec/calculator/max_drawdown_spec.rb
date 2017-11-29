@@ -11,9 +11,9 @@ RSpec.describe StockCalculator::Calculator::MaxDrawdown do
           [
             BigDecimal(100_000),
             BigDecimal(150_000),
-            BigDecimal(90_000),
+            BigDecimal( 90_000),
             BigDecimal(120_000),
-            BigDecimal(80_000),
+            BigDecimal( 80_000),
             BigDecimal(200_000)
           ]
         end
@@ -21,8 +21,22 @@ RSpec.describe StockCalculator::Calculator::MaxDrawdown do
         it { is_expected.to eq BigDecimal('0.149999466666666666666667e6') }
       end
 
-      pending 'sample 2' do
-        it { is_expected.to eq 'pending' }
+      context 'sample 2' do
+        # NOTE:
+        # An Explanation of Equity Drawdown and Maximum Drawdown - Forex Training Group
+        # http://forextraininggroup.com/explanation-equity-drawdown-maximum-drawdown/
+        let(:values) do
+          [
+            BigDecimal( 5_000),
+            BigDecimal(10_000),
+            BigDecimal( 4_000),
+            BigDecimal(12_000),
+            BigDecimal( 3_000),
+            BigDecimal(13_000)
+          ]
+        end
+
+        it { is_expected.to eq BigDecimal('0.75') }
       end
     end
 
