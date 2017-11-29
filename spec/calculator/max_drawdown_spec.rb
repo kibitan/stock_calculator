@@ -20,6 +20,10 @@ RSpec.describe StockCalculator::Calculator::MaxDrawdown do
 
         it { is_expected.to eq BigDecimal('0.149999466666666666666667e6') }
       end
+
+      pending 'sample 2' do
+        it { is_expected.to eq 'pending' }
+      end
     end
 
     context 'with invalid values' do
