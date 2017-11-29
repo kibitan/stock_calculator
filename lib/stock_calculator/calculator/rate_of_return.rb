@@ -20,6 +20,9 @@ module StockCalculator
       end
 
       def calculate
+        # NOTE:
+        #   Rate of return - Wikipedia
+        #   https://en.wikipedia.org/wiki/Rate_of_return#Return
         (@final_value - @initial_value) / @initial_value
       end
 

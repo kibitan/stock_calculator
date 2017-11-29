@@ -1,9 +1,6 @@
 require 'bigdecimal'
 RSpec.describe StockCalculator::Calculator::RateOfReturn do
   describe '.calculate' do
-    # NOTE:
-    #   Rate of return - Wikipedia
-    #   https://en.wikipedia.org/wiki/Rate_of_return#Return
     subject do
       StockCalculator::Calculator::RateOfReturn.calculate(
         initial_value: initial_value,
