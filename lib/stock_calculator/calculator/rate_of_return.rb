@@ -23,6 +23,8 @@ module StockCalculator
         (@final_value - @initial_value) / @initial_value
       end
 
+      private
+
       def check_values
         raise InvalidArgument unless @initial_value.is_a? BigDecimal
         raise InvalidArgument unless @final_value.is_a? BigDecimal
