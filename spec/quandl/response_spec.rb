@@ -7,6 +7,7 @@ RSpec.describe StockCalculator::Quandl::Response do
   after { WebMock.reset! }
 
   describe '.new' do
+    # TODO: refactoring: change Resnponse argument from net_http_response to request_url
     subject { StockCalculator::Quandl::Response.new(net_http_response) }
 
     context 'with valid Net::HTTP response' do
