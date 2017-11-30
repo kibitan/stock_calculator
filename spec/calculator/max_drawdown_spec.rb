@@ -48,6 +48,58 @@ RSpec.describe StockCalculator::Calculator::MaxDrawdown do
 
         it { is_expected.to eq (BigDecimal(12_000) - BigDecimal(3_000)) / BigDecimal(12_000) }
       end
+
+      context 'sample 3' do
+        let(:values) do
+          [
+            BigDecimal(10_000),
+            BigDecimal( 8_000),
+            BigDecimal( 9_000),
+            BigDecimal( 2_000)
+          ]
+        end
+
+        it { is_expected.to eq (BigDecimal(10_000) - BigDecimal(2_000)) / BigDecimal(10_000) }
+      end
+
+      context 'sample 4' do
+        let(:values) do
+          [
+            BigDecimal(10_000),
+            BigDecimal( 8_000),
+            BigDecimal(12_000),
+            BigDecimal(11_000)
+          ]
+        end
+
+        it { is_expected.to eq (BigDecimal(10_000) - BigDecimal(8_000)) / BigDecimal(10_000) }
+      end
+
+      context 'sample 5' do
+        let(:values) do
+          [
+            BigDecimal(10_000),
+            BigDecimal( 8_000),
+            BigDecimal(12_000),
+            BigDecimal( 2_000)
+          ]
+        end
+
+        it { is_expected.to eq (BigDecimal(12_000) - BigDecimal(2_000)) / BigDecimal(12_000) }
+      end
+
+      context 'sample 6' do
+        let(:values) do
+          [
+            BigDecimal(10_000),
+            BigDecimal( 8_000),
+            BigDecimal(12_000),
+            BigDecimal( 2_000)
+          ]
+        end
+
+        it { is_expected.to eq (BigDecimal(12_000) - BigDecimal(2_000)) / BigDecimal(12_000) }
+      end
     end
 
     context 'with invalid values' do
