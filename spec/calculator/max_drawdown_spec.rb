@@ -28,7 +28,7 @@ RSpec.describe StockCalculator::Calculator::MaxDrawdown do
           ]
         end
 
-        it { is_expected.to eq (BigDecimal(150_000) - BigDecimal(80_000)) / BigDecimal(15_000) }
+        it { is_expected.to eq (BigDecimal(150_000) - BigDecimal(80_000)) / BigDecimal(150_000) }
       end
 
       context 'sample 2' do
