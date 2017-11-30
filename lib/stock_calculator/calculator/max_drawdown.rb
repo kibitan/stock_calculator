@@ -30,7 +30,7 @@ module StockCalculator
 
       def validate_values
         raise InvalidArgument unless values.is_a? Array
-        raise NoValues if values.empty?
+        raise NoValues if values.size < 2
 
         values.each do |value|
           raise InvalidArgument unless value.is_a? BigDecimal
