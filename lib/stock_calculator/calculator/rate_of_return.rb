@@ -20,7 +20,7 @@ module StockCalculator
       def initialize(initial_value:, final_value:)
         @initial_value = initial_value
         @final_value = final_value
-        check_values
+        validate_values
       end
 
       def calculate
@@ -30,7 +30,7 @@ module StockCalculator
         (final_value - initial_value) / initial_value
       end
 
-      def check_values
+      def validate_values
         raise InvalidArgument unless initial_value.is_a? BigDecimal
         raise InvalidArgument unless final_value.is_a? BigDecimal
 

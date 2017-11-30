@@ -20,14 +20,14 @@ module StockCalculator
 
       def initialize(values)
         @values = values.dup
-        check_values
+        validate_values
       end
 
       def calculate
         BigDecimal '0.149999466666666666666667e6'
       end
 
-      def check_values
+      def validate_values
         raise InvalidArgument unless values.is_a? Array
 
         values.each do |value|
