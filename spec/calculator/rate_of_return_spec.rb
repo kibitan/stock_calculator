@@ -8,6 +8,21 @@ RSpec.describe StockCalculator::Calculator::RateOfReturn do
       )
     end
 
+    context do
+      let(:initial_value) { BigDecimal(100) }
+      let(:final_value) { BigDecimal(200) }
+
+      let!(:previous_initial_value) { initial_value.dup }
+      let!(:previous_final_value) { final_value.dup }
+
+      before { subject }
+
+      it 'has no side-effect' do
+        expect(initial_value).to eq previous_initial_value
+        expect(final_value).to eq previous_final_value
+      end
+    end
+
     context 'with argument initial_value: 100, final_value: 200' do
       let(:initial_value) { BigDecimal(100) }
       let(:final_value) { BigDecimal(200) }
