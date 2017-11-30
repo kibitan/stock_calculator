@@ -2,6 +2,16 @@ RSpec.describe StockCalculator::Calculator::MaxDrawdown do
   describe '.calculate' do
     subject { StockCalculator::Calculator::MaxDrawdown.calculate(values) }
 
+    context do
+      let(:values) { Array.new }
+      let!(:previous_values) { values.dup }
+      before { subject }
+
+      it 'has no side-effect' do
+        expect(values).to eq previous_values
+      end
+    end
+
     context 'with valid values samples' do
       context 'sample 1' do
         # NOTE:

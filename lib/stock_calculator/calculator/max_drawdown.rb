@@ -19,7 +19,7 @@ module StockCalculator
       attr_reader :values
 
       def initialize(values)
-        @values = values
+        @values = values.dup
         check_values
       end
 
