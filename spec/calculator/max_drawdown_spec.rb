@@ -3,7 +3,7 @@ RSpec.describe StockCalculator::Calculator::MaxDrawdown do
     subject { StockCalculator::Calculator::MaxDrawdown.calculate(values) }
 
     context do
-      let(:values) { Array.new }
+      let(:values) { [ BigDecimal(100_000) ] }
       let!(:previous_values) { values.dup }
       before { subject }
 
@@ -54,6 +54,11 @@ RSpec.describe StockCalculator::Calculator::MaxDrawdown do
       context 'not array' do
         let(:values) { Hash.new }
         it { expect { subject }.to raise_error StockCalculator::Calculator::MaxDrawdown::InvalidArgument }
+      end
+
+      context 'empty array' do
+        let(:values) { Array.new }
+        it { expect { subject }.to raise_error StockCalculator::Calculator::MaxDrawdown::NoValues }
       end
 
       context 'contain nil' do

@@ -7,6 +7,7 @@ module StockCalculator
       class NegativeNumber < StandardError; end
       class Zero < StandardError; end
       class InvalidArgument < StandardError; end
+      class NoValues < StandardError; end
 
       class << self
         def calculate(values)
@@ -29,6 +30,7 @@ module StockCalculator
 
       def validate_values
         raise InvalidArgument unless values.is_a? Array
+        raise NoValues if values.empty?
 
         values.each do |value|
           raise InvalidArgument unless value.is_a? BigDecimal
