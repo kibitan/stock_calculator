@@ -74,15 +74,13 @@ RSpec.describe StockCalculator::Result do
         )
     end
 
-    before do
-      expect(StockCalculator::Calculator::RateOfReturn).to receive(:calculate)
-        .with(initial_value: initial_value, final_value: final_value)
-    end
-
     let(:initial_value) { 100 }
     let(:final_value)   { 150 }
 
     it 'call properly StockCalculator::Calculator::RateOfReturn' do
+      expect(StockCalculator::Calculator::RateOfReturn).to receive(:calculate)
+        .with(initial_value: initial_value, final_value: final_value)
+
       expect { subject }.not_to raise_error
     end
   end
