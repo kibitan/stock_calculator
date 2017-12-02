@@ -37,7 +37,7 @@ RSpec.describe StockCalculator::Result do
       let(:start_date) { Date.new(2017, 11, 22) }
       let(:end_date) { Date.new(2017, 11, 25) }
 
-      # TODO: change test for spec from implementation
+      # TODO: change test of spec from implementation
       before do
         quandl_response = double('StockCalculator::Quandl::Response')
         expect(quandl_response).to receive(:datas)
@@ -94,7 +94,7 @@ RSpec.describe StockCalculator::Result do
       ).max_drawdown
     end
 
-    # TODO: refactoring: don't ask tell
+    # TODO: refactoring: tell don't ask
     before do
       allow_any_instance_of(StockCalculator::Result).to receive(:price_datas)
         .and_return(
