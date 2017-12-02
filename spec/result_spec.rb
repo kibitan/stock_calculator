@@ -1,3 +1,5 @@
+require 'ostruct'
+
 RSpec.describe StockCalculator::Result do
   describe '.new' do
     subject do
@@ -41,13 +43,47 @@ RSpec.describe StockCalculator::Result do
         expect(quandl_response).to receive(:datas)
 
         expect(StockCalculator::Quandl::WikiPrices).to receive(:find)
-                                                       .with(stock_symbol: stock_symbol, date: start_date..end_date)
-                                                       .and_return(quandl_response)
+          .with(stock_symbol: stock_symbol, date: start_date..end_date)
+          .and_return(quandl_response)
       end
 
       it 'call properly StockCalculator::Quandl::WikiPrices.find' do
         expect { subject }.not_to raise_error
       end
+    end
+  end
+
+  describe '#rate_of_return' do
+    subject do
+      StockCalculator::Result.new(
+        stock_symbol: 'AAPL',
+        start_date:   Date.new(2017, 11, 22),
+        end_date:     Date.new(2017, 11, 25)
+      ).rate_of_return
+    end
+
+    # TODO: refactoring
+    before do
+      allow_any_instance_of(StockCalculator::Result).to receive(:price_datas)
+        .and_return(
+          [
+            OpenStruct.new(open: initial_value, close: 'dummy'),
+            OpenStruct.new(open: 'dummy',       close: 'dummy'),
+            OpenStruct.new(open: 'dummy',       close: final_value)
+          ]
+        )
+    end
+
+    before do
+      expect(StockCalculator::Calculator::RateOfReturn).to receive(:calculate)
+        .with(initial_value: initial_value, final_value: final_value)
+    end
+
+    let(:initial_value) { 100 }
+    let(:final_value)   { 150 }
+
+    it 'call properly StockCalculator::Calculator::RateOfReturn' do
+      expect { subject }.not_to raise_error
     end
   end
 end

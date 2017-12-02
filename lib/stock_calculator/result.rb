@@ -15,5 +15,12 @@ module StockCalculator
           date: start_date..end_date
         ).datas
     end
+
+    def rate_of_return
+      StockCalculator::Calculator::RateOfReturn.calculate(
+        initial_value: price_datas.first.open,
+        final_value:   price_datas.last.close
+      )
+    end
   end
 end
