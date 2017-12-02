@@ -84,4 +84,55 @@ RSpec.describe StockCalculator::Result do
       expect { subject }.not_to raise_error
     end
   end
+
+  describe '#max_drawdown' do
+    subject do
+      StockCalculator::Result.new(
+        stock_symbol: 'AAPL',
+        start_date:   Date.new(2017, 11, 22),
+        end_date:     Date.new(2017, 11, 25)
+      ).max_drawdown
+    end
+
+    # TODO: refactoring: don't ask tell
+    before do
+      allow_any_instance_of(StockCalculator::Result).to receive(:price_datas)
+        .and_return(
+          [
+            OpenStruct.new(open: open_value_1, high: high_value_1, low: low_value_1, close: 'dummy'),
+            OpenStruct.new(open: 'dummy',      high: high_value_2, low: low_value_2, close: 'dummy'),
+            OpenStruct.new(open: 'dummy',      high: high_value_3, low: low_value_3, close: close_value_3)
+          ]
+        )
+    end
+
+    let(:open_value_1) { 100 }
+
+    let(:high_value_1)  { 130 }
+    let(:low_value_1)   {  90 }
+    let(:high_value_2)  { 180 }
+    let(:low_value_2)   { 120 }
+    let(:high_value_3)  { 200 }
+    let(:low_value_3)   { 160 }
+
+    let(:close_value_3)   { 170 }
+
+    it 'call properly StockCalculator::Calculator::MaxDrawdown' do
+      expect(StockCalculator::Calculator::MaxDrawdown).to receive(:calculate)
+        .with(
+          [
+            open_value_1,
+            high_value_1,
+            low_value_1,
+            high_value_2,
+            low_value_2,
+            high_value_3,
+            low_value_3,
+            close_value_3
+          ]
+        )
+
+      expect { subject }.not_to raise_error
+    end
+  end
 end
