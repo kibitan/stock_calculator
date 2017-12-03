@@ -31,6 +31,8 @@ module StockCalculator
               { date: date }
             when Range
               { 'date.gt': date.first, 'date.lt': date.last }
+            else
+              {}
             end
 
           url.query = URI.encode_www_form(
