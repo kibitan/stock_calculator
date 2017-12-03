@@ -1,0 +1,17 @@
+HTTP 200
+date: Sun, 03 Dec 2017 16:55:01 GMT
+content-type: application/json; charset=utf-8
+set-cookie: __cfduid=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx; expires=Mon, 03-Dec-18 16:55:00 GMT; path=/; domain=.quandl.com; HttpOnly
+cache-control: max-age=0, private, must-revalidate
+etag: W/"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-ratelimit-limit: 50000
+x-ratelimit-remaining: 49995
+x-request-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+x-runtime: 0.041795
+x-xss-protection: 1; mode=block
+server: cloudflare-nginx
+cf-ray: xxxxxxxxxxxxxxxx-TXL
+
+{"datatable":{"data":[["AAPL","2017-11-24",175.1,175.5,174.6459,174.97,14026519.0,0.0,1.0,175.1,175.5,174.6459,174.97,14026519.0],["AAPL","2017-11-27",175.05,175.08,173.34,174.09,20536313.0,0.0,1.0,175.05,175.08,173.34,174.09,20536313.0],["AAPL","2017-11-28",174.3,174.87,171.86,173.07,25468442.0,0.0,1.0,174.3,174.87,171.86,173.07,25468442.0],["AAPL","2017-11-29",172.63,172.92,167.16,169.48,40788324.0,0.0,1.0,172.63,172.92,167.16,169.48,40788324.0]],"columns":[{"name":"ticker","type":"String"},{"name":"date","type":"Date"},{"name":"open","type":"BigDecimal(34,12)"},{"name":"high","type":"BigDecimal(34,12)"},{"name":"low","type":"BigDecimal(34,12)"},{"name":"close","type":"BigDecimal(34,12)"},{"name":"volume","type":"BigDecimal(37,15)"},{"name":"ex-dividend","type":"BigDecimal(42,20)"},{"name":"split_ratio","type":"double"},{"name":"adj_open","type":"BigDecimal(50,28)"},{"name":"adj_high","type":"BigDecimal(50,28)"},{"name":"adj_low","type":"BigDecimal(50,28)"},{"name":"adj_close","type":"BigDecimal(50,28)"},{"name":"adj_volume","type":"double"}]},"meta":{"next_cursor_id":null}}

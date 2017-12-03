@@ -27,7 +27,7 @@ RSpec.describe StockCalculator::Quandl::Response do
     describe '#datas' do
       subject { StockCalculator::Quandl::Response.new(net_http_response).datas }
 
-      context 'with valid Net::HTTP response' do
+      context 'with valid Net::HTTP response and sigle data' do
         let(:request_url) { URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=valid_api_key&date=2017-11-22&ticker=AAPL') }
         let(:dummy_response_file) { File.new('spec/quandl/dummy_responses/ticker-AAPL_date-2017-11-22') }
 
@@ -48,6 +48,28 @@ RSpec.describe StockCalculator::Quandl::Response do
           expect(subject[0].adj_low).to eq 173.05
           expect(subject[0].adj_close).to eq 174.96
           expect(subject[0].adj_volume).to eq 24997274.0
+        end
+      end
+
+      context 'with valid Net::HTTP response and multiple data' do
+        let(:request_url) { URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=valid_api_key&ticker=AAPL&date.gt=2017-11-23&date.lt=2017-11-30') }
+        let(:dummy_response_file) { File.new('spec/quandl/dummy_responses/ticker-AAPL_date-2017-11-23_to_2017-11-30') }
+
+        it 'returns proper StockCalculator::Quandl::Data collections' do
+          expect(subject).to be_instance_of(Array)
+          expect(subject.size).to eq 4
+
+          expect(subject[0]).to be_instance_of(StockCalculator::Quandl::Data)
+          expect(subject[0].date).to eq Date.new(2017, 11,24)
+
+          expect(subject[1]).to be_instance_of(StockCalculator::Quandl::Data)
+          expect(subject[1].date).to eq Date.new(2017, 11,27)
+
+          expect(subject[2]).to be_instance_of(StockCalculator::Quandl::Data)
+          expect(subject[2].date).to eq Date.new(2017, 11,28)
+
+          expect(subject[3]).to be_instance_of(StockCalculator::Quandl::Data)
+          expect(subject[3].date).to eq Date.new(2017, 11,29)
         end
       end
     end
