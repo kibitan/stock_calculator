@@ -25,12 +25,19 @@ module StockCalculator
 
       def request_url
         @request_url ||= API_URL.dup.tap do |url|
+          date_query =
+            case date
+            when Date
+              { date: date }
+            when Range
+              { 'date.gt': date.first, 'date.lt': date.last }
+            end
+
           url.query = URI.encode_www_form(
             {
               api_key: Config.api_key,
-              ticker: stock_symbol,
-              date: date
-            }.compact
+              ticker: stock_symbol
+            }.merge(date_query).compact
           )
         end
       end

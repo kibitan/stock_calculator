@@ -35,6 +35,21 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
               URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=hoge&ticker=AAPL&date=2017-11-23')
           end
         end
+
+        context 'with date(range)' do
+          let(:date_range) { Date.new(2017, 11, 23)..Date.new(2017, 11, 30) }
+          subject do
+            StockCalculator::Quandl::WikiPrices.new(
+              stock_symbol: stock_symbol,
+              date: date_range
+            ).request_url
+          end
+
+          it 'return valid URL' do
+            is_expected.to eq \
+              URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=hoge&ticker=AAPL&date.gt=2017-11-23&date.lt=2017-11-30')
+          end
+        end
       end
     end
   end
