@@ -18,8 +18,8 @@ module StockCalculator
 
     def rate_of_return
       StockCalculator::Calculator::RateOfReturn.calculate(
-        initial_value: price_datas.first.open,
-        final_value:   price_datas.last.close
+        initial_value: price_datas.first.adj_close,
+        final_value:   price_datas.last.adj_close
       )
     end
 

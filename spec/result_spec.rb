@@ -67,9 +67,9 @@ RSpec.describe StockCalculator::Result do
       allow_any_instance_of(StockCalculator::Result).to receive(:price_datas)
         .and_return(
           [
-            OpenStruct.new(open: initial_value, adj_close: 'dummy'),
-            OpenStruct.new(open: 'dummy',       adj_close: 'dummy'),
-            OpenStruct.new(open: 'dummy',       adj_close: final_value)
+            OpenStruct.new(adj_close: initial_value),
+            OpenStruct.new(adj_close: 'dummy'),
+            OpenStruct.new(adj_close: final_value)
           ]
         )
     end
