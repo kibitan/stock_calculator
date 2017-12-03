@@ -99,12 +99,14 @@ RSpec.describe StockCalculator::Result do
       allow_any_instance_of(StockCalculator::Result).to receive(:price_datas)
         .and_return(
           [
-            OpenStruct.new(high: high_value_1, low: low_value_1),
-            OpenStruct.new(high: high_value_2, low: low_value_2),
-            OpenStruct.new(high: high_value_3, low: low_value_3)
+            OpenStruct.new(open: open_value_1, high: high_value_1, low: low_value_1, close: 'dummy'),
+            OpenStruct.new(open: 'dummy',      high: high_value_2, low: low_value_2, close: 'dummy'),
+            OpenStruct.new(open: 'dummy',      high: high_value_3, low: low_value_3, close: close_value_3)
           ]
         )
     end
+
+    let(:open_value_1) { 100 }
 
     let(:high_value_1)  { 130 }
     let(:low_value_1)   {  90 }
@@ -113,16 +115,20 @@ RSpec.describe StockCalculator::Result do
     let(:high_value_3)  { 200 }
     let(:low_value_3)   { 160 }
 
+    let(:close_value_3)   { 170 }
+
     it 'call properly StockCalculator::Calculator::MaxDrawdown' do
       expect(StockCalculator::Calculator::MaxDrawdown).to receive(:calculate)
         .with(
           [
+            open_value_1,
             high_value_1,
             low_value_1,
             high_value_2,
             low_value_2,
             high_value_3,
             low_value_3,
+            close_value_3
           ]
         )
 

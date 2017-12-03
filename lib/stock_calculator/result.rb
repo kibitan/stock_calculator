@@ -24,9 +24,15 @@ module StockCalculator
     end
 
     def max_drawdown
-      StockCalculator::Calculator::MaxDrawdown.calculate(
-        price_datas.map { |data| [data.high, data.low] }.flatten
-      )
+      values = []
+      values << price_datas.first.open
+      price_datas.each do |price_data|
+        values << price_data.high
+        values << price_data.low
+      end
+      values << price_datas.last.close
+
+      StockCalculator::Calculator::MaxDrawdown.calculate(values)
     end
   end
 end
