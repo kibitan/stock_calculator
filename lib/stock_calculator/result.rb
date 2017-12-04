@@ -1,3 +1,7 @@
+require 'stock_calculator/quandl/wiki_prices'
+require 'stock_calculator/calculator/rate_of_return'
+require 'stock_calculator/calculator/max_drawdown'
+
 module StockCalculator
   class Result
     attr_reader :stock_symbol, :start_date, :end_date
