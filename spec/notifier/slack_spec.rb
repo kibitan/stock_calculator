@@ -72,13 +72,13 @@ RSpec.describe StockCalculator::Notifier::Slack do
     end
 
     context 'with invalid webhook url' do
-      let(:slack_webhook_url) { 'https://hooks.slack.com/services/T00000000/B00000000/invalid' }
+      let(:slack_webhook_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
 
-      let(:channel) { '#invalid' }
+      let(:channel) { '#valid' }
       let(:text) { "this is the test test!\nHello World!" }
 
-      let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/invalid' }
-      let(:payload_of_request) { %Q|{"text":"this is the test test!\\nHello World!","channel":"#invalid"}| }
+      let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
+      let(:payload_of_request) { %Q|{"text":"this is the test test!\\nHello World!","channel":"#valid"}| }
       let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/invalid_token') }
 
       it 'raise StockCalculator::Notifier::Slack::APIError' do
