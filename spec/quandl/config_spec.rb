@@ -27,7 +27,7 @@ RSpec.describe StockCalculator::Quandl::Config do
     context 'when api_key is exists' do
       let(:quandl_api_key) { 'hogehogehoge' }
 
-      it 'raise error' do
+      it 'return api_key' do
         is_expected.to eq 'hogehogehoge'
       end
     end
