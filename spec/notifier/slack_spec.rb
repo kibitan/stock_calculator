@@ -7,13 +7,13 @@ RSpec.describe StockCalculator::Notifier::Slack do
       )
     end
 
-    # mock config
+    # stubbing config
     before do
       allow(StockCalculator::Notifier::Slack::Config).to receive(:webhook_url)
         .and_return(slack_webhook_url)
     end
 
-    # mock url
+    # stubbing url
     before do
       stub_request(:post, request_url)
         .with(body: { payload: payload_of_request })
