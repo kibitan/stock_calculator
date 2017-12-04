@@ -1,6 +1,6 @@
-require 'bigdecimal'
-
 RSpec.describe StockCalculator::Quandl::Data do
+  require 'bigdecimal'
+
   describe '.new' do
     subject do
       StockCalculator::Quandl::Data.new(

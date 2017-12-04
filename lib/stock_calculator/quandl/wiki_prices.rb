@@ -1,10 +1,10 @@
-require 'stock_calculator/quandl/config'
-require 'stock_calculator/quandl/response'
-require 'net/http'
-
 module StockCalculator
   module Quandl
     class WikiPrices
+      require 'stock_calculator/quandl/config'
+      require 'stock_calculator/quandl/response'
+      require 'net/http'
+
       API_URL = URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES').freeze
       attr_reader :stock_symbol, :date
 

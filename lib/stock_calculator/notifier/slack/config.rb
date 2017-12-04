@@ -1,9 +1,9 @@
-require 'stock_calculator/notifier/slack/error'
-require 'singleton'
-
 module StockCalculator
   module Notifier
     class Slack::Config
+      require 'stock_calculator/notifier/slack/error'
+      require 'singleton'
+
       include Singleton
 
       class << self

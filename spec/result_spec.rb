@@ -1,6 +1,6 @@
-require 'ostruct'
-
 RSpec.describe StockCalculator::Result do
+  require 'ostruct'
+
   describe '.new' do
     subject do
       StockCalculator::Result.new(

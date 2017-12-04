@@ -1,8 +1,7 @@
-require 'slack-notifier'
-
 module StockCalculator
   module Notifier
     class Slack
+      require 'slack-notifier'
       require 'stock_calculator/notifier/slack/config'
 
       class << self

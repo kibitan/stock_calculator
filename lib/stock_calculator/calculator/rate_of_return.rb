@@ -1,8 +1,8 @@
-require 'bigdecimal'
-
 module StockCalculator
   module Calculator
     class RateOfReturn
+      require 'bigdecimal'
+
       class NegativeNumber < StandardError; end
       class Zero < StandardError; end
       class InvalidArgument < StandardError; end

@@ -1,9 +1,9 @@
-require 'stock_calculator/quandl/wiki_prices'
-require 'stock_calculator/calculator/rate_of_return'
-require 'stock_calculator/calculator/max_drawdown'
-
 module StockCalculator
   class Result
+    require 'stock_calculator/quandl/wiki_prices'
+    require 'stock_calculator/calculator/rate_of_return'
+    require 'stock_calculator/calculator/max_drawdown'
+
     attr_reader :stock_symbol, :start_date, :end_date
 
     def initialize(stock_symbol:, start_date:, end_date:)

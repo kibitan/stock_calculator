@@ -1,10 +1,10 @@
-require 'stock_calculator/quandl/error'
-require 'stock_calculator/quandl/data'
-require 'json'
-
 module StockCalculator
   module Quandl
     class Response
+      require 'stock_calculator/quandl/error'
+      require 'stock_calculator/quandl/data'
+      require 'json'
+
       attr_reader :net_http_response, :content, :status_code
 
       def initialize(net_http_response)

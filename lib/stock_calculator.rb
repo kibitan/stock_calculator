@@ -1,9 +1,9 @@
-require 'stock_calculator/version'
-require 'stock_calculator/error'
-require 'stock_calculator/result'
-require 'stock_calculator/notifier/slack'
-
 module StockCalculator
+  require 'stock_calculator/version'
+  require 'stock_calculator/error'
+  require 'stock_calculator/result'
+  require 'stock_calculator/notifier/slack'
+
   class << self
     def run(stock_symbol:, start_date:)
       Main.new(stock_symbol: stock_symbol, start_date: start_date).result

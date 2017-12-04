@@ -1,6 +1,5 @@
-require 'net/http'
-
 RSpec.describe StockCalculator::Quandl::Response do
+  require 'net/http'
   let(:net_http_response) { Net::HTTP.get_response(request_url) }
 
   before { stub_request(:get, request_url).to_return(dummy_response_file) }

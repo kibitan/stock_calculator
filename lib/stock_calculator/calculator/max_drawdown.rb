@@ -1,9 +1,8 @@
-require 'bigdecimal'
-require 'tapp'
-
 module StockCalculator
   module Calculator
     class MaxDrawdown
+      require 'bigdecimal'
+
       class NegativeNumber < StandardError; end
       class Zero < StandardError; end
       class InvalidArgument < StandardError; end

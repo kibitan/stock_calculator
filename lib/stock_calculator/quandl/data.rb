@@ -1,9 +1,9 @@
-require 'bigdecimal'
-require 'bigdecimal/util'
-
 module StockCalculator
   module Quandl
     class Data
+      require 'bigdecimal'
+      require 'bigdecimal/util'
+
       # NOTE: definition: `curl https://www.quandl.com/api/v3/datatables/WIKI/PRICES/metadata.json`
       attr_reader :ticker,
                   :date,

@@ -1,5 +1,6 @@
-require 'bigdecimal'
 RSpec.describe StockCalculator::Calculator::RateOfReturn do
+  require 'bigdecimal'
+
   describe '.calculate' do
     subject do
       StockCalculator::Calculator::RateOfReturn.calculate(

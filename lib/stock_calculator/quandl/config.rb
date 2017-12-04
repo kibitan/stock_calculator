@@ -1,9 +1,9 @@
-require 'stock_calculator/quandl/error'
-require 'singleton'
-
 module StockCalculator
   module Quandl
     class Config
+      require 'stock_calculator/quandl/error'
+      require 'singleton'
+
       include Singleton
 
       class << self
