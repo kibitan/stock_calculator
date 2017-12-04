@@ -4,10 +4,11 @@ require 'stock_calculator/result'
 require 'stock_calculator/notifier/slack'
 
 module StockCalculator
-  def run(stock_symbol:, start_date:)
-    Main.new(stock_symbol: stock_symbol, start_date: start_date).result
+  class << self
+    def run(stock_symbol:, start_date:)
+      Main.new(stock_symbol: stock_symbol, start_date: start_date).result
+    end
   end
-  module_function :run
 
   class Main
     attr_reader :stock_symbol, :start_date, :end_date
