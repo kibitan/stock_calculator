@@ -22,6 +22,8 @@ module StockCalculator
       def notify(text:, channel:)
         slack_notifier.post(text: text, channel: channel)
         true
+      rescue ::Slack::Notifier::APIError => e
+        raise APIError, e.message
       end
     end
   end
