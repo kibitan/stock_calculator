@@ -1,4 +1,4 @@
-require 'stock_calculator/quandl/errors'
+require 'stock_calculator/quandl/error'
 require 'stock_calculator/quandl/data'
 require 'json'
 
