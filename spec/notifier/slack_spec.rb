@@ -57,17 +57,19 @@ RSpec.describe StockCalculator::Notifier::Slack do
       end
     end
 
-    context 'with invalid channel' do
+    context 'with invalid webhook url' do
+      let(:slack_webhook_url) { 'https://hooks.slack.com/services/T00000000/B00000000/invalid' }
+
       let(:channel) { '#invalid' }
       let(:text) { "this is the test test!\nHello World!" }
 
-      let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
+      let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/invalid' }
       let(:payload_of_request) { %Q|{"text":"this is the test test!\\nHello World!","channel":"#invalid"}| }
-      let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/invalid_channel') }
+      let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/invalid_token') }
 
       it 'raise StockCalculator::Notifier::Slack::APIError' do
         expect { subject }.to raise_error StockCalculator::Notifier::Slack::APIError,
-          "The slack API returned an error: channel_not_found (HTTP Code 404)\n" +
+          "The slack API returned an error: Bad token (HTTP Code 404)\n" +
           "Check the \"Handling Errors\" section on https://api.slack.com/incoming-webhooks for more information\n"
       end
     end
