@@ -4,6 +4,7 @@ require 'stock_calculator/result'
 require 'stock_calculator/quandl/wiki_prices'
 require 'stock_calculator/calculator/rate_of_return'
 require 'stock_calculator/calculator/max_drawdown'
+require 'stock_calculator/notifier/slack'
 
 module StockCalculator
   def run(stock_symbol:, start_date:)
