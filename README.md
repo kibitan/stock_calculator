@@ -1,6 +1,7 @@
 # StockCalculator
 [![Build Status](https://travis-ci.org/kibitan/stock_calculator.svg?branch=master)](https://travis-ci.org/kibitan/stock_calculator)
 [![Maintainability](https://api.codeclimate.com/v1/badges/bfc7ca7e931335b59b69/maintainability)](https://codeclimate.com/github/kibitan/stock_calculator/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/bfc7ca7e931335b59b69/test_coverage)](https://codeclimate.com/github/kibitan/stock_calculator/test_coverage)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/stock_calculator`. To experiment with that code, run `bin/console` for an interactive prompt.
 
