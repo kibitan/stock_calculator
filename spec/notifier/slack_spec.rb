@@ -39,6 +39,20 @@ RSpec.describe StockCalculator::Notifier::Slack do
             expect { subject }.not_to raise_error
           end
         end
+
+        context 'with invalid text' do
+          let(:text) { "" }
+
+          let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
+          let(:payload_of_request) { %Q|{"text":"","channel":"#sandbox"}| }
+          let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/invalid_text') }
+
+          it 'raise StockCalculator::Notifier::Slack::APIError' do
+            expect { subject }.to raise_error StockCalculator::Notifier::Slack::APIError,
+              "The slack API returned an error: missing_text_or_fallback_or_attachments (HTTP Code 500)\n" +
+              "Check the \"Handling Errors\" section on https://api.slack.com/incoming-webhooks for more information\n"
+          end
+        end
       end
 
       context 'with invalid channel' do
