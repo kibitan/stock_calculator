@@ -1,6 +1,11 @@
 require 'bundler/setup'
-require 'stock_calculator'
 require 'webmock/rspec'
+require 'simplecov'
+SimpleCov.start do
+  add_filter %r{^/spec/}
+end
+
+require 'stock_calculator'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
