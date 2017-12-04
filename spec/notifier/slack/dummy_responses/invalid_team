@@ -1,0 +1,16 @@
+HTTP 404
+content-type: text/html
+content-length: 7
+access-control-allow-origin: *
+date: Mon, 04 Dec 2017 19:13:27 GMT
+referrer-policy: no-referrer
+server: Apache
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Accept-Encoding
+x-frame-options: SAMEORIGIN
+x-slack-backend: h
+x-cache: Error from cloudfront
+via: 1.1 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.cloudfront.net (CloudFront)
+x-amz-cf-id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-xxxxxxxxx==
+
+No team
