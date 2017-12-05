@@ -3,35 +3,37 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/bfc7ca7e931335b59b69/maintainability)](https://codeclimate.com/github/kibitan/stock_calculator/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/bfc7ca7e931335b59b69/test_coverage)](https://codeclimate.com/github/kibitan/stock_calculator/test_coverage)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/stock_calculator`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'stock_calculator'
+```bash
+ $ git clone git@github.com:kibitan/stock_calculator.git
 ```
 
-And then execute:
+## Requirement
 
-    $ bundle
+ * you need [Quandl API key](https://docs.quandl.com/docs#section-authentication), set it to enviorment valuable `QUANDL_API_KEY`.
 
-Or install it yourself as:
-
-    $ gem install stock_calculator
+ * for posting slack, you need [Incoming Webhook URL](https://get.slack.help/hc/en-us/articles/115005265063-Incoming-WebHooks-for-Slack), set it to enviorment valuable `SLACK_WEBHOOK_URL`.
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+  $ stock_calculator execute STOCK_SYMBOL START_DATE
+```
+
+e.g.
+
+```
+  $ stock_calculator execute AAPL 2017-11-22
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```bash
+  $ bin/setup
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+You can use [direnv](https://direnv.net/) as well.
 
 ## Contributing
 
