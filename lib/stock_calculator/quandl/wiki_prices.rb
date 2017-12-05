@@ -20,7 +20,7 @@ module StockCalculator
       end
 
       def response
-        Response.new(Net::HTTP.get_response(request_url))
+        @response ||= Response.new(Net::HTTP.get_response(request_url))
       end
 
       def request_url
