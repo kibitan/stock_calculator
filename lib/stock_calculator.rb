@@ -5,6 +5,7 @@ module StockCalculator
   require 'stock_calculator/error'
   require 'stock_calculator/result'
   require 'stock_calculator/notifier/slack'
+  require 'stock_calculator/notifier/stdout'
 
   class << self
     def run(stock_symbol:, start_date:)
