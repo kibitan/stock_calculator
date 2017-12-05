@@ -1,12 +1,5 @@
 RSpec.describe StockCalculator::Notifier::Slack do
   describe '.notify' do
-    subject do
-      StockCalculator::Notifier::Slack.notify(
-        text: text,
-        channel: channel
-      )
-    end
-
     # stubbing config
     before do
       allow(StockCalculator::Notifier::Slack::Config).to receive(:webhook_url)
@@ -24,11 +17,33 @@ RSpec.describe StockCalculator::Notifier::Slack do
     context 'with valid webhook url' do
       let(:slack_webhook_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
 
+      context 'with valid text' do
+        let(:text) { "this is the test test!\nHello World!" }
+
+        subject { StockCalculator::Notifier::Slack.notify(text: text) }
+
+        let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
+        let(:payload_of_request) { %Q|{"text":"this is the test test!\\nHello World!"}| }
+        let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/success') }
+
+        it 'return true' do
+          is_expected.to be true
+          expect { subject }.not_to raise_error
+        end
+      end
+
       context 'with valid channel' do
         let(:channel) { '#sandbox' }
 
         context 'with valid text' do
           let(:text) { "this is the test test!\nHello World!" }
+
+          subject do
+            StockCalculator::Notifier::Slack.notify(
+              text: text,
+              channel: channel
+            )
+          end
 
           let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
           let(:payload_of_request) { %Q|{"text":"this is the test test!\\nHello World!","channel":"#sandbox"}| }
@@ -43,6 +58,13 @@ RSpec.describe StockCalculator::Notifier::Slack do
         context 'with invalid text' do
           let(:text) { "" }
 
+          subject do
+            StockCalculator::Notifier::Slack.notify(
+              text: text,
+              channel: channel
+            )
+          end
+
           let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
           let(:payload_of_request) { %Q|{"text":"","channel":"#sandbox"}| }
           let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/invalid_text') }
@@ -56,6 +78,13 @@ RSpec.describe StockCalculator::Notifier::Slack do
       end
 
       context 'with invalid channel' do
+        subject do
+          StockCalculator::Notifier::Slack.notify(
+            text: text,
+            channel: channel
+          )
+        end
+
         let(:channel) { '#invalid' }
         let(:text) { "this is the test test!\nHello World!" }
 
@@ -72,9 +101,10 @@ RSpec.describe StockCalculator::Notifier::Slack do
     end
 
     context 'with invalid webhook url' do
-      let(:channel) { '#valid' }
+      subject { StockCalculator::Notifier::Slack.notify(text: text) }
+
       let(:text) { "this is the test test!\nHello World!" }
-      let(:payload_of_request) { %Q|{"text":"this is the test test!\\nHello World!","channel":"#valid"}| }
+      let(:payload_of_request) { %Q|{"text":"this is the test test!\\nHello World!"}| }
 
       context 'invalid token' do
         let(:slack_webhook_url) { 'https://hooks.slack.com/services/T00000000/B00000000/invalid_token' }
