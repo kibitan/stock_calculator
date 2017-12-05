@@ -1,0 +1,2 @@
+export QUANDL_API_KEY=xxxxxxxxxxxxxxxx
+export SLACK_WEBHOOK_URL=xxxxxxxxxx
