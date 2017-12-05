@@ -1,5 +1,4 @@
 RSpec.describe StockCalculator do
-  require 'date'
   require 'timecop'
 
   it 'has a version number' do

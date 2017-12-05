@@ -1,4 +1,5 @@
 module StockCalculator
+  require 'date'
   require 'stock_calculator/version'
   require 'stock_calculator/cli'
   require 'stock_calculator/error'
