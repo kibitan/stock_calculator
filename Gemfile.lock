@@ -3,6 +3,7 @@ PATH
   specs:
     stock_calculator (0.1.0)
       slack-notifier
+      thor
 
 GEM
   remote: https://rubygems.org/

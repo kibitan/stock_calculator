@@ -1,5 +1,6 @@
 module StockCalculator
   require 'stock_calculator/version'
+  require 'stock_calculator/cli'
   require 'stock_calculator/error'
   require 'stock_calculator/result'
   require 'stock_calculator/notifier/slack'
