@@ -18,7 +18,7 @@ module StockCalculator
     def initialize(stock_symbol:, start_date:, end_date: Date.today)
       @stock_symbol = stock_symbol
       @start_date   = parse_date(start_date)
-      @end_date     = end_date
+      @end_date     = parse_date(end_date)
     end
 
     def parse_date(date)
@@ -31,7 +31,7 @@ module StockCalculator
         else
           raise InvalidDate
         end
-      raise OutOfDate if date >= Date.today
+      raise OutOfDate if date > Date.today
       date
     rescue ArgumentError
       raise InvalidDate
