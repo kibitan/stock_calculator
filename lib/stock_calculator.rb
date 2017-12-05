@@ -22,14 +22,17 @@ module StockCalculator
     end
 
     def parse_date(date)
-      case date
-      when String
-        Date.parse(date)
-      when Date
-        date
-      else
-        raise InvalidDate
-      end
+      date =
+        case date
+        when String
+          Date.parse(date)
+        when Date
+          date
+        else
+          raise InvalidDate
+        end
+      raise OutOfDate if date >= Date.today
+      date
     rescue ArgumentError
       raise InvalidDate
     end

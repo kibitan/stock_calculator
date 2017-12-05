@@ -35,8 +35,24 @@ RSpec.describe StockCalculator do
         end
       end
 
-      pending 'with invalid `start_date` argument: nil' do
-        let(:start_date) { nil }
+      context 'with invalid `start_date` argument: today' do
+        let(:start_date) { Date.today }
+
+        it 'raise StockCalculator::Error::OutOfDate' do
+          expect { subject }.to raise_error StockCalculator::OutOfDate
+        end
+      end
+
+      context 'with invalid `start_date` argument: tomorrow' do
+        let(:start_date) { Date.today + 1 }
+
+        it 'raise StockCalculator::Error::OutOfDate' do
+          expect { subject }.to raise_error StockCalculator::OutOfDate
+        end
+      end
+
+      context 'with invalid `start_date` argument: tomorrow(string)' do
+        let(:start_date) { '2017-11-23' }
 
         it 'raise StockCalculator::Error::OutOfDate' do
           expect { subject }.to raise_error StockCalculator::OutOfDate
