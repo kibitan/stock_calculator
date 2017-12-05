@@ -10,17 +10,16 @@ RSpec.describe StockCalculator do
     before { Timecop.freeze(Time.local(2017, 11, 22, 10, 0, 0)) }
     after { Timecop.return }
 
+    before { allow_any_instance_of(StockCalculator::Main).to receive(:notify).and_return(true) }
+
     context 'with valid `stock_symbol` argument' do
       let(:stock_symbol) { 'AAPL' }
 
       context 'with valid `start_date` argument: string' do
         let(:start_date) { '2017-11-18' }
 
-        it 'return StockCalculator::Result' do
-          is_expected.to be_instance_of StockCalculator::Result
-          expect(subject.stock_symbol).to eq 'AAPL'
-          expect(subject.start_date).to eq Date.new(2017, 11, 18)
-          expect(subject.end_date).to eq Date.new(2017, 11, 22)
+        it 'return true' do
+          is_expected.to be true
         end
       end
 
@@ -28,18 +27,7 @@ RSpec.describe StockCalculator do
         let(:start_date) { Date.new(2017, 11, 18) }
 
         it 'return StockCalculator::Result' do
-          is_expected.to be_instance_of StockCalculator::Result
-          expect(subject.stock_symbol).to eq 'AAPL'
-          expect(subject.start_date).to eq Date.new(2017, 11, 18)
-          expect(subject.end_date).to eq Date.new(2017, 11, 22)
-        end
-      end
-
-      context 'with invalid `start_date` argument: today' do
-        let(:start_date) { Date.today }
-
-        it 'raise StockCalculator::Error::OutOfDate' do
-          expect { subject }.to raise_error StockCalculator::OutOfDate
+          is_expected.to be true
         end
       end
 
@@ -88,6 +76,29 @@ RSpec.describe StockCalculator do
 
         it 'raise StockCalculator::Error::InvalidDate' do
           expect { subject }.to raise_error StockCalculator::InvalidDate
+        end
+      end
+    end
+  end
+
+  describe StockCalculator::Main do
+    describe '#result' do
+      subject { StockCalculator::Main.new(stock_symbol: stock_symbol, start_date: start_date).result }
+      before { Timecop.freeze(Time.local(2017, 11, 22, 10, 0, 0)) }
+      after { Timecop.return }
+
+      context 'with valid `stock_symbol` argument' do
+        let(:stock_symbol) { 'AAPL' }
+
+        context 'with valid `start_date` argument' do
+          let(:start_date) { Date.new(2017, 11, 18) }
+
+          it 'return StockCalculator::Result' do
+            is_expected.to be_instance_of StockCalculator::Result
+            expect(subject.stock_symbol).to eq 'AAPL'
+            expect(subject.start_date).to eq Date.new(2017, 11, 18)
+            expect(subject.end_date).to eq Date.new(2017, 11, 22)
+          end
         end
       end
     end

@@ -8,7 +8,7 @@ module StockCalculator
 
   class << self
     def run(stock_symbol:, start_date:)
-      Main.new(stock_symbol: stock_symbol, start_date: start_date).result
+      Main.new(stock_symbol: stock_symbol, start_date: start_date).notify
     end
   end
 
