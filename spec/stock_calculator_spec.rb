@@ -108,6 +108,7 @@ RSpec.describe StockCalculator do
 
       it 'call StockCalculator::Notifier and return true' do
         expect(StockCalculator::Notifier).to receive(:notify).at_least(1).and_return(true)
+        expect { subject }.to output("Notified to Slack!\n").to_stdout
         is_expected.to be true
       end
     end

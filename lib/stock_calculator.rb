@@ -38,7 +38,8 @@ module StockCalculator
 
     def notify
       Notifier.notify(result, output: :stdout)
-      Notifier.notify(result, output: :slack)
+      Notifier.notify(result, output: :slack) && puts('Notified to Slack!')
+      true
     end
 
     def result
