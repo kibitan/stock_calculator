@@ -28,24 +28,35 @@ RSpec.describe StockCalculator::Notifier do
     end
   end
 
-  pending '#notify_text' do
-    subject { StockCalculator::Notifier.new(result, output: output).notify_text }
-    before { expect(ERB).to receive(:new).with.and_return(text) }
-    let(:result) { 'dummy' }
-    let(:result) { text }
+  describe '#notify_text' do
+    subject { StockCalculator::Notifier.new(result, output: :stdout).notify_text }
 
-    context 'with output: :slack' do
-      it 'has proper attributes' do
-        is_expected.to be_instance_of StockCalculator::Notifier
-        expect(subject.result).to eq result
-        expect(subject.output).to eq StockCalculator::Notifier::Slack
+    context 'with result' do
+      let(:result) do
+        OpenStruct.new(
+          stock_symbol: 'AAPL',
+          start_date: Date.new(2017, 11, 22),
+          end_date: Date.new(2017, 12, 03),
+          rate_of_return: BigDecimal('0.2'),
+          max_drawdown: BigDecimal('0.3')
+        )
+      end
+
+      it do
+        is_expected.to eq <<-EOS
+Stock Symbol: AAPL
+Date: 2017-11-22 ~ 2017-12-03
+
+Rate of return: 20.0%
+Max Drawdown: 30.0%
+        EOS
       end
     end
   end
 
-
-  pending'.notify' do
+  pending '.notify' do
     subject { StockCalculator::Notifier.notify(result, output: output) }
+    let(:output) { :stdout }
 
     context 'with output: :stdout' do
       it 'return true' do
