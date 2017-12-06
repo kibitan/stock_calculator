@@ -11,7 +11,7 @@ RSpec.describe StockCalculator::Quandl::Response do
 
     context 'with valid Net::HTTP response' do
       let(:request_url) { URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=valid_api_key&date=2017-11-22&ticker=AAPL') }
-      let(:dummy_response_file) { File.new('spec/quandl/dummy_responses/ticker-AAPL_date-2017-11-22') }
+      let(:dummy_response_file) { File.new('spec/stock_calculator/quandl/dummy_responses/ticker-AAPL_date-2017-11-22') }
 
       it 'has proper attributes' do
         expect { subject }.not_to raise_error
@@ -28,7 +28,7 @@ RSpec.describe StockCalculator::Quandl::Response do
 
       context 'with valid Net::HTTP response and sigle data' do
         let(:request_url) { URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=valid_api_key&date=2017-11-22&ticker=AAPL') }
-        let(:dummy_response_file) { File.new('spec/quandl/dummy_responses/ticker-AAPL_date-2017-11-22') }
+        let(:dummy_response_file) { File.new('spec/stock_calculator/quandl/dummy_responses/ticker-AAPL_date-2017-11-22') }
 
         it 'returns proper StockCalculator::Quandl::Data collections' do
           expect(subject).to be_instance_of(Array)
@@ -52,7 +52,7 @@ RSpec.describe StockCalculator::Quandl::Response do
 
       context 'with valid Net::HTTP response and multiple data' do
         let(:request_url) { URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=valid_api_key&ticker=AAPL&date.gt=2017-11-23&date.lt=2017-11-30') }
-        let(:dummy_response_file) { File.new('spec/quandl/dummy_responses/ticker-AAPL_date-2017-11-23_to_2017-11-30') }
+        let(:dummy_response_file) { File.new('spec/stock_calculator/quandl/dummy_responses/ticker-AAPL_date-2017-11-23_to_2017-11-30') }
 
         it 'returns proper StockCalculator::Quandl::Data collections' do
           expect(subject).to be_instance_of(Array)

@@ -24,7 +24,7 @@ RSpec.describe StockCalculator::Notifier::Slack do
 
         let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
         let(:payload_of_request) { %Q|{"text":"this is the test test!\\nHello World!"}| }
-        let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/success') }
+        let(:dummy_response_file) { File.new('spec/stock_calculator/notifier/slack/dummy_responses/success') }
 
         it 'return true' do
           is_expected.to be true
@@ -47,7 +47,7 @@ RSpec.describe StockCalculator::Notifier::Slack do
 
           let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
           let(:payload_of_request) { %Q|{"text":"this is the test test!\\nHello World!","channel":"#sandbox"}| }
-          let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/success') }
+          let(:dummy_response_file) { File.new('spec/stock_calculator/notifier/slack/dummy_responses/success') }
 
           it 'return true' do
             is_expected.to be true
@@ -67,7 +67,7 @@ RSpec.describe StockCalculator::Notifier::Slack do
 
           let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
           let(:payload_of_request) { %Q|{"text":"","channel":"#sandbox"}| }
-          let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/invalid_text') }
+          let(:dummy_response_file) { File.new('spec/stock_calculator/notifier/slack/dummy_responses/invalid_text') }
 
           it 'raise StockCalculator::Notifier::Slack::APIError' do
             expect { subject }.to raise_error StockCalculator::Notifier::Slack::APIError,
@@ -90,7 +90,7 @@ RSpec.describe StockCalculator::Notifier::Slack do
 
         let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
         let(:payload_of_request) { %Q|{"text":"this is the test test!\\nHello World!","channel":"#invalid"}| }
-        let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/invalid_channel') }
+        let(:dummy_response_file) { File.new('spec/stock_calculator/notifier/slack/dummy_responses/invalid_channel') }
 
         it 'raise StockCalculator::Notifier::Slack::APIError' do
           expect { subject }.to raise_error StockCalculator::Notifier::Slack::APIError,
@@ -110,7 +110,7 @@ RSpec.describe StockCalculator::Notifier::Slack do
         let(:slack_webhook_url) { 'https://hooks.slack.com/services/T00000000/B00000000/invalid_token' }
 
         let(:request_url) { 'https://hooks.slack.com/services/T00000000/B00000000/invalid_token' }
-        let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/invalid_token') }
+        let(:dummy_response_file) { File.new('spec/stock_calculator/notifier/slack/dummy_responses/invalid_token') }
 
         it 'raise StockCalculator::Notifier::Slack::APIError' do
           expect { subject }.to raise_error StockCalculator::Notifier::Slack::APIError,
@@ -123,7 +123,7 @@ RSpec.describe StockCalculator::Notifier::Slack do
         let(:slack_webhook_url) { 'https://hooks.slack.com/services/invalid_team/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
 
         let(:request_url) { 'https://hooks.slack.com/services/invalid_team/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' }
-        let(:dummy_response_file) { File.new('spec/notifier/slack/dummy_responses/invalid_team') }
+        let(:dummy_response_file) { File.new('spec/stock_calculator/notifier/slack/dummy_responses/invalid_team') }
 
         it 'raise StockCalculator::Notifier::Slack::APIError' do
           expect { subject }.to raise_error StockCalculator::Notifier::Slack::APIError,

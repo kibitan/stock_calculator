@@ -80,7 +80,7 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
         context 'when api_key is invalid' do
           let(:quandl_api_key) { 'invalid_api_key' }
           let(:stub_url) { 'https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=invalid_api_key&date=2017-11-22&ticker=AAPL' }
-          let(:dummy_response_file) { File.new('spec/quandl/dummy_responses/invalid_api_key') }
+          let(:dummy_response_file) { File.new('spec/stock_calculator/quandl/dummy_responses/invalid_api_key') }
 
           it 'raise error' do
             expect { subject }.to raise_error StockCalculator::Quandl::InvalidAPIKey
@@ -90,7 +90,7 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
         context 'with api_key' do
           let(:quandl_api_key) { 'valid_api_key' }
           let(:stub_url) { 'https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=valid_api_key&date=2017-11-22&ticker=AAPL' }
-          let(:dummy_response_file) { File.new('spec/quandl/dummy_responses/ticker-AAPL_date-2017-11-22') }
+          let(:dummy_response_file) { File.new('spec/stock_calculator/quandl/dummy_responses/ticker-AAPL_date-2017-11-22') }
 
           it 'return response' do
             is_expected.to be_instance_of StockCalculator::Quandl::Response
@@ -105,7 +105,7 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
       let(:quandl_api_key) { 'valid_api_key' }
 
       let(:stub_url) { 'https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=valid_api_key&date=2017-11-23&ticker=invalid_stock_symbol' }
-      let(:dummy_response_file) { File.new('spec/quandl/dummy_responses/no_data') }
+      let(:dummy_response_file) { File.new('spec/stock_calculator/quandl/dummy_responses/no_data') }
 
       it 'raise error' do
         expect { subject }.to raise_error StockCalculator::Quandl::NoData
