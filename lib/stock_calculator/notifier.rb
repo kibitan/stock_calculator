@@ -8,5 +8,13 @@ module StockCalculator
         true
       end
     end
+
+    attr_reader :result, :output, :output_class
+
+    def initialize(result, output:)
+      @result = result
+      @output = output
+      @output_class = self.class.const_get(output.capitalize)
+    end
   end
 end
