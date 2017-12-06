@@ -1,7 +1,5 @@
 module StockCalculator
-  module Notifier
-    class Slack::Error < StandardError; end
-    class Slack::NoWebhookUrl < Slack::Error; end
-    class Slack::APIError < Slack::Error; end
-  end
+  class Notifier::Slack::Error < StandardError; end
+  class Notifier::Slack::NoWebhookUrl < Notifier::Slack::Error; end
+  class Notifier::Slack::APIError < Notifier::Slack::Error; end
 end

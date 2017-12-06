@@ -4,8 +4,7 @@ module StockCalculator
   require 'stock_calculator/cli'
   require 'stock_calculator/error'
   require 'stock_calculator/result'
-  require 'stock_calculator/notifier/slack'
-  require 'stock_calculator/notifier/stdout'
+  require 'stock_calculator/notifier'
 
   class << self
     def run(stock_symbol:, start_date:)
@@ -35,6 +34,11 @@ module StockCalculator
       end
     rescue ArgumentError
       raise InvalidDate
+    end
+
+    def notify
+      Notifier.notify(result, output: :stdout)
+      Notifier.notify(result, output: :slack)
     end
 
     def result
