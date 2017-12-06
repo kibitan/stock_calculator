@@ -105,18 +105,9 @@ RSpec.describe StockCalculator do
 
     describe '#notify' do
       subject { StockCalculator::Main.new(stock_symbol: 'AAPL', start_date: '2017-11-21').notify }
-      before do
-        allow_any_instance_of(StockCalculator::Notifier).to receive(:notify)
-          .with(result, output: :stdout)
-          .and_return(true)
-        allow_any_instance_of(StockCalculator::Notifier).to receive(:notify)
-          .with(result, output: :slack)
-          .and_return(true)
-      end
 
-      let(:result) { Struct.new(:stock_symbol, :start_date, :end_date) }
-
-      it 'return true' do
+      it 'call StockCalculator::Notifier and return true' do
+        expect(StockCalculator::Notifier).to receive(:notify).at_least(1).and_return(true)
         is_expected.to be true
       end
     end

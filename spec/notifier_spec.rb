@@ -76,19 +76,29 @@ RSpec.describe StockCalculator::Notifier do
     end
   end
 
-  pending '.notify' do
-    subject { StockCalculator::Notifier.notify(result, output: output) }
-    let(:output) { :stdout }
+  describe '.notify' do
+    subject { StockCalculator::Notifier.notify('dummy_result', output: output) }
+
+    before do
+      allow_any_instance_of(StockCalculator::Notifier).to receive(:notify_text)
+        .and_return('dummy')
+    end
 
     context 'with output: :stdout' do
-      it 'return true' do
+      let(:output) { :stdout }
+
+      it 'call StockCalculator::Notifier::Stdout.notify and return true' do
+        expect(StockCalculator::Notifier::Stdout).to receive(:notify).and_return(true)
         is_expected.to be true
       end
+    end
 
-      context 'with output: :slack' do
-        it 'return true' do
-          is_expected.to be true
-        end
+    context 'with output: :slack' do
+      let(:output) { :slack }
+
+      it 'call StockCalculator::Notifier::Slack.notify and return true' do
+        expect(StockCalculator::Notifier::Slack).to receive(:notify).and_return(true)
+        is_expected.to be true
       end
     end
   end

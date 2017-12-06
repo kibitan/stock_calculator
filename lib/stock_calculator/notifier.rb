@@ -5,7 +5,7 @@ module StockCalculator
 
     class << self
       def notify(result, output: :stdout)
-        true
+        new(result, output: output).notify
       end
     end
 
