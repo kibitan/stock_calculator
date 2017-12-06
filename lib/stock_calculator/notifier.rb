@@ -17,20 +17,23 @@ module StockCalculator
       @output_class = self.class.const_get(output.capitalize)
     end
 
+    # TODO: optionize max_precision
+    MAX_PRECISION = 3.freeze
     def notify_text
-      # TODO: make define as ERB file
-<<-EOS
-Stock Symbol: #{result.stock_symbol}
-Date: #{result.start_date} ~ #{result.end_date}
+      # TODO: define to helper class
+      number_to_percentage = ->(n) { "#{(n * 100).floor(MAX_PRECISION).to_f}%" }
+      # TODO: define as ERB file
+      <<~EOS
+        Stock Symbol: #{result.stock_symbol}
+        Date: #{result.start_date} ~ #{result.end_date}
 
-Rate of return: #{(result.rate_of_return * 100).to_f}%
-Max Drawdown: #{(result.max_drawdown * 100).to_f}%
-EOS
+        Rate of return: #{number_to_percentage.call(result.rate_of_return)}
+        Max Drawdown: #{number_to_percentage.call(result.max_drawdown)}
+      EOS
     end
 
     def notify
       @output_class.notify(text: notify_text)
-      true
     end
   end
 end

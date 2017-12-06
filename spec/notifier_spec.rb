@@ -31,24 +31,46 @@ RSpec.describe StockCalculator::Notifier do
   describe '#notify_text' do
     subject { StockCalculator::Notifier.new(result, output: :stdout).notify_text }
 
-    context 'with result' do
+    context 'with result: sample1' do
       let(:result) do
         OpenStruct.new(
           stock_symbol: 'AAPL',
           start_date: Date.new(2017, 11, 22),
           end_date: Date.new(2017, 12, 03),
-          rate_of_return: BigDecimal('0.2'),
-          max_drawdown: BigDecimal('0.3')
+          rate_of_return: BigDecimal('0.2109876543'),
+          max_drawdown: BigDecimal('0.345678901')
         )
       end
 
       it do
-        is_expected.to eq <<-EOS
-Stock Symbol: AAPL
-Date: 2017-11-22 ~ 2017-12-03
+        is_expected.to eq <<~EOS
+          Stock Symbol: AAPL
+          Date: 2017-11-22 ~ 2017-12-03
 
-Rate of return: 20.0%
-Max Drawdown: 30.0%
+          Rate of return: 21.098%
+          Max Drawdown: 34.567%
+        EOS
+      end
+    end
+
+    context 'with result: sample2' do
+      let(:result) do
+        OpenStruct.new(
+          stock_symbol: 'GOOG',
+          start_date: Date.new(2015, 11, 10),
+          end_date: Date.new(2017, 11, 22),
+          rate_of_return: BigDecimal('-0.567890'),
+          max_drawdown: BigDecimal(1) / BigDecimal(3) # 1/3r
+        )
+      end
+
+      it do
+        is_expected.to eq <<~EOS
+          Stock Symbol: GOOG
+          Date: 2015-11-10 ~ 2017-11-22
+
+          Rate of return: -56.789%
+          Max Drawdown: 33.333%
         EOS
       end
     end
