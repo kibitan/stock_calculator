@@ -3,17 +3,24 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/bfc7ca7e931335b59b69/maintainability)](https://codeclimate.com/github/kibitan/stock_calculator/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/bfc7ca7e931335b59b69/test_coverage)](https://codeclimate.com/github/kibitan/stock_calculator/test_coverage)
 
+Input stock symbol and a start date, calculate the rate of return and maximum drawdown of the stock since the start date to today.
+
 ## Installation
 
 ```bash
  $ git clone git@github.com:kibitan/stock_calculator.git
+ $ bin/setup
 ```
+
+You can use [direnv](https://direnv.net/) as well.
 
 ## Requirement
 
- * you need [Quandl API key](https://docs.quandl.com/docs#section-authentication), set it to enviorment valuable `QUANDL_API_KEY`.
+ * Ruby 2.4.2
 
- * for posting slack, you need [Incoming Webhook URL](https://get.slack.help/hc/en-us/articles/115005265063-Incoming-WebHooks-for-Slack), set it to enviorment valuable `SLACK_WEBHOOK_URL`.
+ * You need [Quandl API key](https://docs.quandl.com/docs#section-authentication), set it to environment variable `QUANDL_API_KEY`.
+
+ * For notifying Slack you need [Incoming Webhook URL](https://get.slack.help/hc/en-us/articles/115005265063-Incoming-WebHooks-for-Slack), set it to environment variable `SLACK_WEBHOOK_URL`.
 
 ## Usage
 
@@ -24,16 +31,21 @@
 e.g.
 
 ```
-  $ stock_calculator execute AAPL 2017-11-22
+ $ stock_calculator execute AAPL 2017-12-03
+Stock Symbol: AAPL
+Date: 2017-12-03 ~ 2017-12-07
+
+Rate of return: -2.012%
+Maximum Drawdown: 3.568%
+Notified to Slack!
 ```
 
-## Development
-
-```bash
-  $ bin/setup
-```
-
-You can use [direnv](https://direnv.net/) as well.
+## TODO
+ - [ ] write integration test
+ - [ ] implement more error handling e.g. Timeout
+ - [ ] implement more notifier
+ - [ ] optionize notifier slack
+ - [ ] make graph with [Image Charts](https://image-charts.com/documentation#!/chart/getChart)
 
 ## Contributing
 
