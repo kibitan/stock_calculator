@@ -15,6 +15,7 @@ module StockCalculator
       @webhook_url ||= ENV['SLACK_WEBHOOK_URL'].tap do |webhook_url|
         raise StockCalculator::Notifier::Slack::NoWebhookUrl if webhook_url.nil?
         raise StockCalculator::Notifier::Slack::NoWebhookUrl if webhook_url.empty?
+        raise StockCalculator::Notifier::Slack::InvalidUrl unless URI(webhook_url).kind_of?(URI::HTTP)
       end
     end
   end
