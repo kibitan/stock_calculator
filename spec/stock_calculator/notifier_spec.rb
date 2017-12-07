@@ -48,7 +48,7 @@ RSpec.describe StockCalculator::Notifier do
           Date: 2017-11-22 ~ 2017-12-03
 
           Rate of return: 21.098%
-          Max Drawdown: 34.567%
+          Maximum Drawdown: 34.567%
         EOS
       end
     end
@@ -70,7 +70,7 @@ RSpec.describe StockCalculator::Notifier do
           Date: 2015-11-10 ~ 2017-11-22
 
           Rate of return: -56.789%
-          Max Drawdown: 33.333%
+          Maximum Drawdown: 33.333%
         EOS
       end
     end

@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['kibitan']
   spec.email         = ['uzukifirst@gmail.com']
 
-  spec.summary       = 'culculate the return and maximum drawdow of stock through the command line'
+  spec.summary       = 'culculate the return and maximum drawdown of stock through the command line'
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = 'https://github.com/kibitan/stock_calculator'
   spec.license       = 'MIT'

@@ -28,7 +28,7 @@ module StockCalculator
         Date: #{result.start_date} ~ #{result.end_date}
 
         Rate of return: #{number_to_percentage.call(result.rate_of_return)}
-        Max Drawdown: #{number_to_percentage.call(result.max_drawdown)}
+        Maximum Drawdown: #{number_to_percentage.call(result.max_drawdown)}
       EOS
     end
 
