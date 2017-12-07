@@ -83,6 +83,19 @@ RSpec.describe StockCalculator::Cli do
       end
     end
 
+    context 'raise StockCalculator::Notifier::Slack::InvalidUrl' do
+      before do
+        allow(StockCalculator).to receive(:run)
+          .and_raise(StockCalculator::Notifier::Slack::InvalidUrl)
+      end
+
+      it do
+        expect { subject }.to output("Slack Incoming Webhook URL is not valid url, please check Incoming Webhook URL is correct\n").to_stderr
+        expect { subject }.not_to raise_error
+      end
+    end
+
+
     context 'raise StockCalculator::Notifier::Slack::APIError' do
       before do
         allow(StockCalculator).to receive(:run)

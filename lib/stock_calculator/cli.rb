@@ -23,6 +23,8 @@ module StockCalculator
     # Slack
     rescue StockCalculator::Notifier::Slack::NoWebhookUrl
       $stderr.puts 'for notifying Slack, please set Incoming Webhook URL to environment variable SLACK_WEBHOOK_URL'
+    rescue StockCalculator::Notifier::Slack::InvalidUrl
+      $stderr.puts 'Slack Incoming Webhook URL is not valid url, please check Incoming Webhook URL is correct'
     rescue StockCalculator::Notifier::Slack::APIError
       $stderr.puts 'failed to notify Slack, please check Incoming Webhook URL is correct'
     end
