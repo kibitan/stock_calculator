@@ -30,7 +30,7 @@ module StockCalculator
             when Date
               { date: date }
             when Range
-              { 'date.gt': date.first, 'date.lt': date.last }
+              { 'date.gte': date.first, 'date.lte': date.last }
             else
               {}
             end

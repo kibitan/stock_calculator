@@ -47,7 +47,7 @@ RSpec.describe StockCalculator::Quandl::WikiPrices do
 
           it 'return valid URL' do
             is_expected.to eq \
-              URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=hoge&ticker=AAPL&date.gt=2017-11-23&date.lt=2017-11-30')
+              URI('https://www.quandl.com/api/v3/datatables/WIKI/PRICES?api_key=hoge&ticker=AAPL&date.gte=2017-11-23&date.lte=2017-11-30')
           end
         end
       end
