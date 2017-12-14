@@ -50,10 +50,11 @@ Notified to Slack!
  - [ ] write integration test
  - [ ] implement more error handling e.g. Timeout
  - [ ] implement more notifier
- - [ ] optionize notifier slack
- - [ ] make graph with [Image Charts](https://image-charts.com/documentation#!/chart/getChart)
- - [ ] compatible with another metrics
- - [ ] compatible with another countries japanese stock symbol
+ - [ ] optionize notifier
+ - [ ] notify with prices graph e.g. [Image Charts](https://image-charts.com/documentation#!/chart/getChart)
+ - [ ] add another metrics e.g.
+ - [ ] compatible with another countries e.g. Tokyo stock exchange
+ - [ ] make easier executable e.g. publish to Rubygems
 
 ## Contributing
 
