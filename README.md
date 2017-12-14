@@ -25,7 +25,7 @@ You can use [direnv](https://direnv.net/) as well.
 ## Usage
 
 ```
-  $ stock_calculator execute STOCK_SYMBOL START_DATE
+ $ stock_calculator execute STOCK_SYMBOL START_DATE
 ```
 
 e.g.
@@ -40,12 +40,20 @@ Maximum Drawdown: 3.568%
 Notified to Slack!
 ```
 
+## Run test
+
+```
+ $ bundle exec rspec
+```
+
 ## TODO
  - [ ] write integration test
  - [ ] implement more error handling e.g. Timeout
  - [ ] implement more notifier
  - [ ] optionize notifier slack
  - [ ] make graph with [Image Charts](https://image-charts.com/documentation#!/chart/getChart)
+ - [ ] compatible with another metrics
+ - [ ] compatible with another countries japanese stock symbol
 
 ## Contributing
 
