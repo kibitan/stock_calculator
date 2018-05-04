@@ -5,6 +5,11 @@ SimpleCov.start do
   add_filter %r{^/spec/}
 end
 
+if ENV['CI'] == 'true'
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
+
 require 'stock_calculator'
 
 RSpec.configure do |config|

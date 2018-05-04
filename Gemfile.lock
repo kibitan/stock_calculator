@@ -11,6 +11,10 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     byebug (9.1.0)
+    codecov (0.1.10)
+      json
+      simplecov
+      url
     coderay (1.1.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -51,6 +55,7 @@ GEM
       thor
     thor (0.20.0)
     timecop (0.9.1)
+    url (0.3.2)
     webmock (3.1.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -61,6 +66,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
+  codecov
   pry
   pry-byebug
   rake (~> 10.0)
@@ -75,4 +81,4 @@ RUBY VERSION
    ruby 2.4.2p198
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

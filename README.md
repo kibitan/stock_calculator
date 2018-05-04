@@ -1,7 +1,7 @@
 # StockCalculator
 [![Build Status](https://travis-ci.org/kibitan/stock_calculator.svg?branch=master)](https://travis-ci.org/kibitan/stock_calculator)
 [![Maintainability](https://api.codeclimate.com/v1/badges/bfc7ca7e931335b59b69/maintainability)](https://codeclimate.com/github/kibitan/stock_calculator/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/bfc7ca7e931335b59b69/test_coverage)](https://codeclimate.com/github/kibitan/stock_calculator/test_coverage)
+[![codecov](https://codecov.io/gh/kibitan/stock_calculator/branch/master/graph/badge.svg)](https://codecov.io/gh/kibitan/stock_calculator)
 
 Input stock symbol and a start date, calculate the rate of return and maximum drawdown of the stock since the start date to today.
 
